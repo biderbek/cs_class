@@ -1,17 +1,20 @@
-.PHONY: all
-all: ticket
+name: name.cpp
+	g++ -o name name.cpp
 
-ticket: ticket_discount.cpp
-	g++ -o ticket_discount		 ticket_discount.cpp
+fifty: fifty.cpp
+	g++ -o fifty fifty.cpp
 
-did_i_fail: did_i_fail.cpp
-	g++ -o did_i_fail did_i_fail.cpp
+absolute:
+	g++ -o absolute absolute.cpp
 
-how_low: how_low.cpp
-	g++ -o how_low how_low.cpp
+random:
+	g++ -o random random.cpp
 
-guess: guess.cpp
-	g++ -o guess guess.cpp
+free_choice:
+	g++ -o free_choice free_choice.cpp
 
-guess_loop: guess_loop.cpp
-	g++ -o guess_loop guess_loop.cpp
+voltage:
+	g++ -o voltage voltage.cpp
+
+namecount:
+	g++ -o namecount namecount.cpp
