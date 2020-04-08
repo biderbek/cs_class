@@ -1,5 +1,5 @@
 .PHONY: all
-all: ticket
+all: ticket ticket_discount did_i_fail how_low guess guess_loop
 
 ticket: ticket_discount.cpp
 	g++ -o ticket_discount		 ticket_discount.cpp
