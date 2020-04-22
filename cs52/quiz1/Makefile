@@ -1,5 +1,5 @@
 .PHONY: all
-all: name fifty absolute random free_choice voltage namecount fiftytally.cpp
+all: name fifty absolute random free_choice voltage namecount fiftytally
 
 name: name.cpp
 	g++ -o name name.cpp

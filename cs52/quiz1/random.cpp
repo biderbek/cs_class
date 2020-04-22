@@ -5,6 +5,6 @@ using namespace std;
 int main(){
 
   srand(time(NULL));
-  cout << rand() % 100 + 200 << endl;
+  cout << rand() % 100 + 100 << endl;
 
   }
