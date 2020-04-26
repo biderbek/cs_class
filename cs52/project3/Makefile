@@ -1,20 +1,6 @@
-name: name.cpp
-	g++ -o name name.cpp
+.PHONY: all
+all: bitcoin
 
-fifty: fifty.cpp
-	g++ -o fifty fifty.cpp
+bitcoin: bitcoin.cpp
+	g++ -o bitcoin		 bitcoin.cpp
 
-absolute:
-	g++ -o absolute absolute.cpp
-
-random:
-	g++ -o random random.cpp
-
-free_choice:
-	g++ -o free_choice free_choice.cpp
-
-voltage:
-	g++ -o voltage voltage.cpp
-
-namecount:
-	g++ -o namecount namecount.cpp
