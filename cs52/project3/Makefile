@@ -2,5 +2,5 @@
 all: bitcoin
 
 bitcoin: bitcoin.cpp
-	g++ -o bitcoin		 bitcoin.cpp
+	g++ -o bitcoin -I ./json -I ./curl 		 bitcoin.cpp
 
