@@ -1,6 +1,6 @@
 #include <ctime>
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <stdlib.h>
 #include <string>
 #include <sstream>
@@ -12,6 +12,7 @@
 
 using namespace std;
 
+// Menu function
 vector<string> myMenu(){
   string s;
   vector<string> r;
@@ -42,9 +43,10 @@ public:
   vector<string> ledger;
   void storeTransaction(string myEntry){
     ledger.push_back(myEntry);
-    ofstream outfile("/tmp/junk.txt");
-    outfile << myEntry;
-    outfile.close();
+    ofstream f;
+    f.open("/tmp/ledger.log");
+    f << myEntry << endl;
+    f.close();
   }
 
   void printLedger(){
@@ -135,7 +137,7 @@ int main(){
         myDate d;
         string myMessage;
         myMessage=d.stringDate() + ": " + "Bought " + toString(buyBTC) + " BTC. for " + toString(bitCoinValue) + " My cash " + toString(myDollars) + " My BTC " + toString(myWallet.currentCoins);
-        myLedger.ledger.push_back(myMessage);
+        myLedger.storeTransaction(myMessage);
       }
       continue;
     }
@@ -153,7 +155,7 @@ int main(){
         myDate d;
         string myMessage;
         myMessage=d.stringDate() + ": " + "Sold " + toString(sellBTC) + " BTC. for " + toString(bitCoinValue) + " My cash " + toString(myDollars) + " My BTC " + toString(myWallet.currentCoins);
-        myLedger.ledger.push_back(myMessage);
+        myLedger.storeTransaction(myMessage);
       }
       continue;
     }
