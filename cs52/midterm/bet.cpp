@@ -25,13 +25,6 @@ vector<string> myMenu(){
   return r;
 }
 
-class Wallet {
-public:
-  int currentCoins;
-  void printWallet(){
-    cout "You currently have: " << currentCoins << endl;
-  }
-};
 
 class Race {
 
@@ -75,35 +68,51 @@ public:
 
 };
 
+class Wallet {
+public:
+  int currentDollars;
+  void printWallet(){
+    cout << "You currently have: " << currentDollars << endl;
+  }
+};
+
+
 int main()
 {
 
   Wallet myWallet;
+  myWallet.currentDollars=300;
+  vector<string> myChoices = myMenu();
 
-  cout << "Race!" << endl;
-   srand(time(NULL));   // initialize a random seed
+  while(true){
+    if (myChoices[0] == "pb") {
+      cout << "Current balance:" << myWallet.currentDollars << endl;
+      continue;
+    }
 
-   Race r;
 
-   // run 10 races to show this works
-   for (int i=0; i<10; i++) {
-       // Shuffle integer array.to run the race
-     Vector<string> myChoices = myMenu();
+    if (myChoices[0] == "ebet"){
+      continue;
+    }
 
-     if (myChoices[0] == "pb") {
-       cout << "The current balance is " << bitCoinValue << endl;
-       getLive g;
-       bitCoinValue=g.btcPrice();
-       cout << "The new value of Bitcoin is " << bitCoinValue << endl;
-       continue;
-     }
-     
-       r.readysetgo();
 
-       // print out the first place
-       cout << r.first() << " " << r.second() << " " << r.third() << endl ;
+    if (myChoices[0] == "ebox"){
+      continue;
+    }
+    cout << "Race!" << endl;
+    srand(time(NULL));   // initialize a random seed
 
-   }
+    Race r;
 
-   return 0;
+    // run 10 races to show this works
+    for (int i=0; i<10; i++) {
+      // Shuffle integer array.to run the race
+      r.readysetgo();
+
+      // print out the first place
+      cout << r.first() << " " << r.second() << " " << r.third() << endl ;
+
+    }
+  }
+  return 0;
 }
