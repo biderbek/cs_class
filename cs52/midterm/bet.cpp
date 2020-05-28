@@ -16,8 +16,8 @@ vector<string> myMenu(){
   string s;
   vector<string> r;
   cout << endl;
-  cout << "ebet,<value>,<horse 1>,<horse 2> =>\n\t EXACTA bets cost 50 dollars to place but you win 300 dollars if you guess the exact winning order of the top two horses.\n";
-  cout << "ebox,<int>,<horse 1>,<horse 2> =>\n\t EXACTABOX bet costs 25 dollars to place but you win 150 if you guess the top two horses in any order.\n";
+  cout << "ebet,<horse 1>,<horse 2> =>\n\t EXACTA bets cost 50 dollars to place but you win 300 dollars if you guess the exact winning order of the top two horses.\n";
+  cout << "ebox,<horse 1>,<horse 2> =>\n\t EXACTABOX bet costs 25 dollars to place but you win 150 if you guess the top two horses in any order.\n";
   cout << "pb => Print your balance.\n";
   cout << "Enter a command: ";
   cin >> s;
@@ -28,7 +28,7 @@ vector<string> myMenu(){
 
 class Race {
 
-   int myarray[3] = { 1, 2, 3};
+  int myarray[4] = { 1, 2, 3, 4};
 
 public:
 
@@ -40,6 +40,8 @@ public:
 
    // run the imaginary race
    void readysetgo() {
+
+     cout << "Race!" << endl;
 
        int n = sizeof(myarray)/sizeof(myarray[0]) ;
 
@@ -65,14 +67,28 @@ public:
    int third() {
        return myarray[2];
    }
+  int fourth() {
+    return myarray[3];
+  }
+  void placements() {
+    cout << "Resuts: " + to_string(first()) + " " + to_string(second()) + " " + to_string(third()) + " " + to_string(fourth()) << endl;
+  }
 
 };
 
 class Wallet {
-public:
+private:
   int currentDollars;
+
+public:
   void printWallet(){
     cout << "You currently have: " << currentDollars << endl;
+  }
+  int getCurrentDollars(){
+    return currentDollars;
+  }
+  void setCurrentDollars(int x){
+    currentDollars=x;
   }
 };
 
@@ -81,37 +97,45 @@ int main()
 {
 
   Wallet myWallet;
-  myWallet.currentDollars=300;
-  vector<string> myChoices = myMenu();
+  myWallet.setCurrentDollars(300);
+  Race myRace;
+  srand(time(NULL));   // initialize a random seed
 
   while(true){
+
+    vector<string> myChoices = myMenu();
+
     if (myChoices[0] == "pb") {
-      cout << "Current balance:" << myWallet.currentDollars << endl;
+      myWallet.printWallet();
       continue;
     }
-
 
     if (myChoices[0] == "ebet"){
+      myRace.readysetgo();
+      if (myWallet.getCurrentDollars() - 50 > 0 ) {
+        cout << "You do not have enough money for this bet.\n";
+        continue;
+      }
+      myRace.readysetgo();
+      if (stoi(myChoices[1]) == myRace.first() and stoi(myChoices[2]) == myRace.second() ){
+        cout << "You won.\n";
+        continue;
+      }
       continue;
     }
 
 
-    if (myChoices[0] == "ebox"){
+    if ( myChoices[0] == "ebox"){
+      myRace.readysetgo();
+      myRace.placements();
+      if (myWallet.getCurrentDollars() - 50 < 0 ) {
+        cout << "You do not have enough money for this bet.\n";
+          } else if (( stoi(myChoices[1]) == myRace.first() or stoi(myChoices[1]) == myRace.second() ) and ( stoi(myChoices[2]) == myRace.first() or stoi(myChoices[2]) == myRace.second() )) {
+        cout << "You won.\n";
+      } else {
+        cout << "You lost.\n";
+      }
       continue;
-    }
-    cout << "Race!" << endl;
-    srand(time(NULL));   // initialize a random seed
-
-    Race r;
-
-    // run 10 races to show this works
-    for (int i=0; i<10; i++) {
-      // Shuffle integer array.to run the race
-      r.readysetgo();
-
-      // print out the first place
-      cout << r.first() << " " << r.second() << " " << r.third() << endl ;
-
     }
   }
   return 0;
