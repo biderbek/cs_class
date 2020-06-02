@@ -22,6 +22,7 @@ vector<string> myMenu(){
   cout << "Enter a command: ";
   cin >> s;
   boost::split(r, s, boost::is_any_of(","), boost::token_compress_on);
+  cout << endl;
   return r;
 }
 
@@ -112,14 +113,18 @@ int main()
 
     if (myChoices[0] == "ebet"){
       myRace.readysetgo();
-      if (myWallet.getCurrentDollars() - 50 > 0 ) {
+      myRace.placements();
+      if (myWallet.getCurrentDollars() - 50 < 0 ) {
         cout << "You do not have enough money for this bet.\n";
         continue;
       }
-      myRace.readysetgo();
       if (stoi(myChoices[1]) == myRace.first() and stoi(myChoices[2]) == myRace.second() ){
         cout << "You won.\n";
+        myWallet.setCurrentDollars(myWallet.getCurrentDollars()+250);
         continue;
+      } else {
+        cout << "You lost.\n";
+        myWallet.setCurrentDollars(myWallet.getCurrentDollars()-50);
       }
       continue;
     }
@@ -128,12 +133,14 @@ int main()
     if ( myChoices[0] == "ebox"){
       myRace.readysetgo();
       myRace.placements();
-      if (myWallet.getCurrentDollars() - 50 < 0 ) {
+      if (myWallet.getCurrentDollars() - 25 < 0 ) {
         cout << "You do not have enough money for this bet.\n";
           } else if (( stoi(myChoices[1]) == myRace.first() or stoi(myChoices[1]) == myRace.second() ) and ( stoi(myChoices[2]) == myRace.first() or stoi(myChoices[2]) == myRace.second() )) {
         cout << "You won.\n";
+        myWallet.setCurrentDollars(myWallet.getCurrentDollars()+125);
       } else {
         cout << "You lost.\n";
+        myWallet.setCurrentDollars(myWallet.getCurrentDollars()-25);
       }
       continue;
     }
