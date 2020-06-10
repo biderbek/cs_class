@@ -1,15 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 #include <iostream>
-#include <vector>;
-
 using namespace std;
-
-vector<string> carStable;
-
-carStable.push_back ("porsche");
-carStable.push_back ("benz");
-
 
 class myCar {
   int speed=0;
@@ -21,7 +14,8 @@ public:
   }
 
   myCar(int x){
-    speed=x*10;
+    speed=x;
+    speed=speed*10;
   }
 
   void setHorn(int x){
@@ -39,31 +33,37 @@ public:
   int getSpeed(){
     return speed;
   }
+ 
 };
 
 
 
 
 int main(){
-  myCar porsche;
-  myCar benz(10);
+
+  myCar porsche(10);
+  myCar benz;
+
+  vector<myCar> carStable;
+
+  carStable.push_back (porsche);
+  carStable.push_back (benz);
 
   // check porsche speed
-  cout << "Porsche: \n My Speed is " << porsche.getSpeed() << endl;
+  cout << "Porsche: \n My Speed is " << porsche.getSpeed() << endl ;
 
   // returns 100
   if (porsche.getHorn() == 0) {
-    cout << "My Horn is off." << endl;
+    cout << " My Horn is off." << endl;
   } else {
-    cout << "My Horn is on." << endl;
+    cout << " My Horn is on.";
   }
 
-  cout << endl << "Benz: \n My Speed is " << benz.getSpeed() << endl;
+  cout << "Benz: \n My Speed is " << benz.getSpeed() << endl;
 
   benz.setSpeed(120);
 
-  cout << endl << "Benz: \n My Speed has changed to " << benz.getSpeed() << endl;
-
+  cout << "Benz: \n My Speed has changed to " << benz.getSpeed();
 
 }
 
